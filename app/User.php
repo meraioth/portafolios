@@ -26,4 +26,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /** Obtiene registros asociados con ramos**/
+    public function ramos(){
+
+        return $this->belongsToMany('App\Ramo' , 'ramo_user','user_id','ramo_id');
+    }
 }

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Ramo;
+use App\Asignatura;
 
 class HomeController extends Controller
 {
@@ -22,7 +26,15 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   $ramos= $this->getRamos();
+        return view('home')->with('ramos',$ramos);
+    }
+
+    private function getRamos(){
+        $salida =[];
+        foreach (Auth::user()->ramos as $ramo ) {
+            $salida[$ramo->codigo_asignatura]= Asignatura::find($ramo->codigo_asignatura);
+        }
+        return $salida;
     }
 }

@@ -5,10 +5,17 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Tus Asignaturas</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                <ul>
+                    @foreach($ramos as $us)
+                    <li><a method="GET" href="{{ url('/ramo/'.$us->nombre) }}">
+                    {!!$us->nombre!!}
+                    </a>
+                    </li>
+                    @endforeach
+                </ul>
                 </div>
             </div>
         </div>
