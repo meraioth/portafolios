@@ -272,6 +272,7 @@ class ComposerStaticInitdc7a97dfcdc161a040cf61e32e41602a
     );
 
     public static $classMap = array (
+        'App\\Asignatura' => __DIR__ . '/../..' . '/app/Asignatura.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -298,6 +299,7 @@ class ComposerStaticInitdc7a97dfcdc161a040cf61e32e41602a
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
+        'CreateCarpeta' => __DIR__ . '/../..' . '/database/migrations/2017_07_17_201309_create_carpeta.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersRamosTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_17_033222_create_users_ramos_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
