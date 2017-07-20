@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ramo/{nombre}',function($nombre){return view('ramo');
 });
+Route::get('/carpeta','CarpetaController@index');
 
