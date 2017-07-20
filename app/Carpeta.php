@@ -10,4 +10,10 @@ class Carpeta extends Model
         'fecha_subida', 'planilla', 'syllabus', 'acta','zip'
     ];
 
+    public function ramo(){
+    	return $this->hasOne('App\Ramo');
+
+    }
+    
+
 }

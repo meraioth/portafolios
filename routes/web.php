@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/ramo/{nombre}',function($nombre){return view('ramo');
+Route::get('/ramo/{nombre}',function($nombre){return view('ramo')->with('asignatura',$nombre);
 });
 Route::get('/carpeta','CarpetaController@index');
 
