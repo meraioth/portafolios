@@ -15,5 +15,9 @@ class DatabaseSeeder extends Seeder
          $this->call(AsignaturasTableSeeder::class);
          $this->call(RamosTableSeeder::class);
          $this->call(Users_RamosTableSeeder::class);
+         $this->call(CarpetasTableSeeder::class);
+        $this->call(EvaluacionsTableSeeder::class);
+
+
     }
 }
