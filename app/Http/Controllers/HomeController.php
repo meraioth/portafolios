@@ -27,6 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {   $ramos= $this->getRamos();
+        var_dump($ramos);
         return view('home')->with('ramos',$ramos);
     }
 

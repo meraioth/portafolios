@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/ramo/{nombre}',function($nombre){return view('ramo');
-});
-Route::get('/carpeta','CarpetaController@index');
+
+Route::get('/carpeta/{ramo_id}','CarpetaController@carpeta')->name('carpeta/{ramo_id}');
+
+Route::post('/carpeta','CarpetaController@carpeta');
 
