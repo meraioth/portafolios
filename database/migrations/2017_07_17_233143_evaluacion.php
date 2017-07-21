@@ -15,15 +15,16 @@ class Evaluacion extends Migration
     {
          Schema::create('evaluacions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
             $table->string('tipo');
-            $table->string('buena')->unique();
+            $table->string('buena');
             $table->string('media');
             $table->string('mala');
-            $table->string('id_carpeta');
+            $table->integer('carpeta_id')->unsigned();
 
-            $table->foreign('id_carpeta')
-            ->references('codigo')
-                    ->on('asignaturas');
+            $table->foreign('carpeta_id')
+            ->references('id')
+                    ->on('carpetas');
 
             $table->rememberToken();
             $table->timestamps();
@@ -37,6 +38,6 @@ class Evaluacion extends Migration
      */
     public function down()
     {
-        //
+       Schema::dropIfExists('evaluacions');
     }
 }

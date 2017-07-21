@@ -9,12 +9,17 @@ class Carpeta extends Model
      protected $fillable = [
         'fecha_subida', 'planilla', 'syllabus', 'acta','zip'
     ];
+   public function ramo(){
+    	return $this->hasOne('App\Ramo');
 
-	public function evaluaciones(){
-		return $this->hasMany('App\Evaluacion');
-	}
+    }
+    
 
-	public function ramo(){
-		return $this->hasOne('App\Ramo');
-	}
+public function evaluacion(){
+
+	return $this->hasMany('App\Evaluacion');
+
+}
+
+
 }

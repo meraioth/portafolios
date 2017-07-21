@@ -9,7 +9,7 @@ class Evaluacion extends Model
     protected $primaryKey = 'id', $table= 'evaluacions';
 	 public $incrementing=false;
      protected $fillable = [
-        'id', 'tipo', 'buena', 'media','mala','id_carpeta'
+        'id', 'nombre' ,'tipo', 'buena', 'media','mala','carpeta_id'
     ];
 
     public function carpeta()

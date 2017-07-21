@@ -17,9 +17,13 @@ class Ramo extends Model
     public function users(){
     	return $this->belongsToMany('App\User','ramo_user');
     }
+    public function evaluaciones()
+    {
+        return $this->hasMany('App\Evaluacion');
+    }
 
     public function carpeta(){
-        return $this->belongsTo('App\Carpeta');
+        return $this->hasOne('App\Carpeta');
     }
 
 }
