@@ -18,5 +18,9 @@ class Ramo extends Model
     {
     	return $this->belongsToMany('App\User','ramo_user');
     }
+    public function evaluaciones()
+    {
+        return $this->hasMany('App\Evaluacion');
+    }
 
 }
