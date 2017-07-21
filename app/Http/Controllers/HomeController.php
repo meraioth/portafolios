@@ -37,7 +37,7 @@ class HomeController extends Controller
         $carpeta = Carpeta::find($idcarpeta);
         $evaluaciones=[];
 
-        foreach ($carpeta->evaluacion as $evaluacion ) {
+        foreach ($carpeta->evaluaciones as $evaluacion ) {
             $evaluaciones[$evaluacion->id]= Evaluacion::find($evaluacion->id);
         }
 
