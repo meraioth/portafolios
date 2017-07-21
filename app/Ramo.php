@@ -11,12 +11,15 @@ class Ramo extends Model
     ],$table='ramos';
 
     public function asignatura(){
-    	return $this->hasOne(Asignatura::class,'codigo','codigo_asignatura');
+    	return $this->belongsTo(Asignatura::class,'codigo','codigo_asignatura');
     }
 
-    public function users()
-    {
+    public function users(){
     	return $this->belongsToMany('App\User','ramo_user');
+    }
+
+    public function carpeta(){
+        return $this->belongsTo('App\Carpeta');
     }
 
 }

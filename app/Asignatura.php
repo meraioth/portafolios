@@ -14,6 +14,6 @@ class Asignatura extends Model
 
     public function ramo()
     {
-    	return $this->belongsTo('App\Ramo');
+    	return $this->hasMany('App\Ramo');
     }
 }

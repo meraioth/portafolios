@@ -12,8 +12,8 @@ class Evaluacion extends Model
         'id', 'tipo', 'buena', 'media','mala','id_carpeta'
     ];
 
-    public function ramo()
+    public function carpeta()
     {
-    	return $this->belongsTo('App\Ramo');
+    	return $this->belongsTo('App\Carpeta');
     }
 }

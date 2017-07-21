@@ -10,11 +10,11 @@ class Carpeta extends Model
         'fecha_subida', 'planilla', 'syllabus', 'acta','zip'
     ];
 
+	public function evaluaciones(){
+		return $this->hasMany('App\Evaluacion');
+	}
 
-
-public function evaluacion(){
-
-	return $this->hasMany('App\Evaluacion');
-
-}
+	public function ramo(){
+		return $this->hasOne('App\Ramo');
+	}
 }
