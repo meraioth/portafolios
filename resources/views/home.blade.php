@@ -10,7 +10,7 @@
                 <div class="panel-body">
                 <ul>
                     @foreach($ramos as $us)
-                    <li><a method="GET" href="{{ url('/carpeta/'.$us->primaryKey) }}">
+                    <li><a method="GET" href="{{ url('/carpeta/'.$us->nombre) }}">
                     {!!$us->nombre!!}
                     </a>
                     </li>
