@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Carpeta - {!!$asignatura!!}</div>
+                <div class="panel-heading">Carpeta </div>
 
                 <div class="panel-body">
                 <form>
@@ -25,10 +25,12 @@
                 <div class="panel-heading">Mis Evaluaciones</div>
 
                 <div class="panel-body">
-                
-                   <li><a href="#"> Certamen 1</a></li>
-                   <li><a href="#"> Certamen 2</a></li>
-                   <li><a href="#"> Certamen 3</a></li>
+                     @foreach($evaluaciones as $ev)
+                    <li><a method="GET" href="{{ url('/evaluaciones/'.$ev->id)}}">
+                    {!!$ev->nombre!!}
+                    </a>
+                    </li>
+                    @endforeach
 
                 </div>
             </div>

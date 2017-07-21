@@ -18,10 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/ramo/{nombre}',function($nombre){return view('ramo')->with('asignatura',$nombre);
-});
+Route::get('/ramo/{nombre}','CarpetaController@index');
+
 Route::get('/carpeta','CarpetaController@index');	
-Route::get('/evaluaciones/{carpeta}','HomeController@evaluaciones');
+//Route::get('/evaluaciones/{carpeta}','HomeController@evaluaciones');
+//Route::get('/evaluaciones/{id}','EvaluacionController@evaluaciones');
 
 
 

@@ -23,7 +23,7 @@ class Ramo extends Model
     }
 
     public function carpeta(){
-        return $this->belongsTo('App\Carpeta');
+        return $this->hasOne('App\Carpeta');
     }
 
 }
