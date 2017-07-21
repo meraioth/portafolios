@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Ramo;
 use App\Asignatura;
+use App\Carpeta;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,22 @@ class HomeController extends Controller
     {   $ramos= $this->getRamos();
         return view('home')->with('ramos',$ramos);
     }
+
+     public function evaluaciones($idcarpeta)
+    {   
+
+        $carpeta = Carpeta::find($idcarpeta);
+        $evaluaciones=[];
+
+        foreach ($carpeta->evaluacion as $evaluacion ) {
+            $evaluaciones[$evaluacion->id]= Evaluacion::find($evaluacion->id);
+        }
+
+        
+
+        return view('evaluacion',$evaluaciones);
+    }
+
 
     private function getRamos(){
         $salida =[];
