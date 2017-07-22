@@ -8,13 +8,30 @@
                 <div class="panel-heading">Carpeta</div>
 
                 <div class="panel-body">
-                <form>
-                   <li><a href="#"> Syllabus</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
-                   <li><a href="#"> Lista de Clase</a><input type="file" name="Lista Clases" placeholder="Lista de Clases"></li>
-                   <li><a href="#"> Acta </a><input type="file" name="Acta" placeholder="Acta"></li>
 
+                <form name="syllabus" method="post" action="/file/syllabus" enctype="multipart/form-data" >
+                {{csrf_field()}}
+                   <li><a href="{{ url('storage/.$directorio')}}">Syllabus: </a> 
+                   {!!$carpeta[0]->syllabus!!} 
+                   <input type="file" name="file" placeholder=""> </li>
+                   <input type="submit" value="Subir">
+                </form><br>
 
-                </form>
+                <form method="post" action="/file/acta" enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li><a href="#">Acta: </a>
+                  {!!$carpeta[0]->acta!!}
+                  <input type="file" name="file" placeholder="Lista de Clases"></li>
+                  <input type="submit" value="Subir">
+                </form><br>
+
+                <form method="post" action="/file/planilla" enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="#">Planilla: </a>
+                   {!!$carpeta[0]->planilla!!}
+                   <input type="file" name="file" placeholder="Acta"></li>
+                  <input type="submit" value="Subir">
+                </form><br>
                 </div>
             </div>
         </div>
@@ -25,12 +42,10 @@
                 <div class="panel-heading">Mis Evaluaciones</div>
 
                 <div class="panel-body">
-                
+              
                    <li><a href="#"> Syllabus</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
                    <li><a href="#"> Lista de Clase</a><input type="file" name="Lista Clases" placeholder="Lista de Clases"></li>
                    <li><a href="#"> Acta </a><input type="file" name="Acta" placeholder="Acta"></li>
-
-
             >
                 </div>
             </div>

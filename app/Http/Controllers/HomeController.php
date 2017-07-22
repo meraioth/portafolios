@@ -27,14 +27,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   $ramos= $this->getRamos();
+    public function index(){
+        $ramos= $this->getRamos();
         return view('home',['ramos'=>$ramos[0],'id'=>$ramos[1]]);
     }
 
-     public function evaluaciones($idcarpeta)
-    {   
-
+    public function evaluaciones($idcarpeta){   
         $carpeta = Carpeta::find($idcarpeta);
         $evaluaciones=[];
 

@@ -11,6 +11,7 @@ class CarpetasTableSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
          DB::table('carpetas')->insert([
             'ramo_id' => 1,
             'fecha_subida'=> '2008-7-04',
@@ -20,6 +21,15 @@ class CarpetasTableSeeder extends Seeder
             'zip'=> 'archivo.zip',
             'syllabus' => 'Inteligencia-Artificial.pdf',
             
+=======
+        DB::table('carpetas')->insert([
+            'fecha_subida' => '2017-07-01',
+            'planilla' => 'no disponible',
+            'syllabus' => 'no disponible',
+            'acta' =>'no disponible',
+            'zip' =>'no disponible',
+            'ramo_id'=>1
+>>>>>>> joaco
         ]);
     }
 }
