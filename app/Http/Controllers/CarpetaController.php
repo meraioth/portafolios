@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Ramo;
 use App\Carpeta;
 use App\Asignatura;
+use App\Evaluacion;
+use App\User;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -16,33 +18,31 @@ class CarpetaController extends Controller{
     private $carpeta;
     private $ramo;
 
-   public function index($codigo){
-     $evaluaciones = $this->getEvaluaciones($codigo);
-   	return view('ramo',['asignatura'=>$codigo, 'evaluaciones'=>$evaluaciones]);
-   	  //return view('ramo',['asignatura'=>Asignatura::find($codigo)->nombre]);
-   }
+    function _construct(){
+      $this->ramo = "nada";
+    }
 
    public function carpeta($ramo_id){
    	
-   		$user = "JulioGodoy";
-      $ramo = "InteligenciaArtificial";
-      $semestre = "SI";
-      $año = "2017";
+   		$carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
+      $evaluaciones = $this->getEvaluaciones($ramo_id);
+      session()->put('ramo', Ramo::find($ramo_id));
+      $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
+      $user = Auth::user()->name;
+      $semestre = "Semestre ".session()->get('ramo')->semestre;
+      $año = session()->get('ramo')->ano;
+      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre;
+      return view('carpeta',compact('carpeta','evaluaciones','directorio'));
 
-      $directorio = $user.'/'.$ramo.'/'.$año.$semestre;
-
-     $carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
-    // return view('carpeta')->with('carpeta',$carpeta);
-     return view('carpeta',compact('carpeta','directorio'));
    }
 
    public function storeFile(request $request, $fileName){
 
-     	$user = "JulioGodoy";
-      $ramo = "InteligenciaArtificial";
-      $semestre = "SI";
-      $año = "2017";
-      $directorio = $user.'/'.$ramo.'/'.$año.$semestre;
+     	$user = Auth::user()->name;
+      $semestre = "Semestre ".session()->get('ramo')->semestre;
+      $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
+      $año = session()->get('ramo')->ano;
+      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre;
 
    
       if ($request->hasFile('file')) {
@@ -53,7 +53,7 @@ class CarpetaController extends Controller{
 
           $request->file->storeAs($directorio,$commpleteFile);
 
-          $tmp_carpeta = Carpeta::where('ramo_id', 1)->get();
+          $tmp_carpeta = Carpeta::where('ramo_id', session()->get('ramo')->id)->get();
 
           $tmp_carpeta[0][$fileName] = $commpleteFile;
           $tmp_carpeta[0]->save();
@@ -74,12 +74,13 @@ class CarpetaController extends Controller{
    }
 
    public function showPdf($fileName){
-      $user = "JulioGodoy";
-      $ramo = "InteligenciaArtificial";
-      $semestre = "SI";
-      $año = "2017";
 
-      $directorio = 'app\public\JulioGodoy\InteligenciaArtificial\2017SI\\';
+      $user = Auth::user()->name;
+      $semestre = "Semestre ".session()->get('ramo')->semestre;
+      $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
+      $año = session()->get('ramo')->ano;
+      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre;
+
     // $filename = 'syllabus.pdf';
       // $path = storage_path($filename);
       $path = storage_path($directorio.$fileName);

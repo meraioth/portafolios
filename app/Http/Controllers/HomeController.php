@@ -32,33 +32,6 @@ class HomeController extends Controller
         return view('home',['ramos'=>$ramos[0],'id'=>$ramos[1]]);
     }
 
-    public function evaluaciones($idcarpeta){   
-        $carpeta = Carpeta::find($idcarpeta);
-        $evaluaciones=[];
-
-        foreach ($carpeta->evaluacion as $evaluacion ) {
-            $evaluaciones[$evaluacion->id]= Evaluacion::find($evaluacion->id);
-        }
-
-        
-
-        return view('evaluacion')->with("evaluaciones",$evaluaciones);
-    }
-
-    public function evaluacion($idevaluacion)
-    {   
-
-        $evaluacion = Evaluacion::find($idevaluacion);
-        
-
-       
-
-        
-
-        return view('evaluacion')->with("evaluacion",$evaluacion);
-    }
-
-
     private function getRamos(){
         $salida1 =[];
         $salida2 =[];
