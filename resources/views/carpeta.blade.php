@@ -11,7 +11,7 @@
 
                 <form name="syllabus" method="post" action="/file/syllabus" enctype="multipart/form-data" >
                 {{csrf_field()}}
-                   <li><a href="#">Syllabus: </a> 
+                   <li><a href="{{ url('storage/.$directorio')}}">Syllabus: </a> 
                    {!!$carpeta[0]->syllabus!!} 
                    <input type="file" name="file" placeholder=""> </li>
                    <input type="submit" value="Subir">

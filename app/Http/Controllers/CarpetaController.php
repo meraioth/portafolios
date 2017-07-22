@@ -19,31 +19,36 @@ class CarpetaController extends Controller
    	return view('carpeta');
    }
 
-   public function carpeta($nombre){
+   public function carpeta($ramo_id){
    	
-   		// $this->ramo_id = $ramo_id;
-   		// $this->carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
-   		// return view('carpeta')->with('carpeta',$this->carpeta);
+   		$carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
+      return view('carpeta')->with('carpeta',$carpeta);
    }
 
-   public function storeFile(request $request){
+   public function storeFile(request $request, $fileName){
 
-   		dd(request()->all());
-      // $user = "JulioGodoy";
-     //  $ramo = "InteligenciaArtificial";
-     //  $semestre = "SI";
-     //  $año = "2017";
-   		// $directorio = $user.'/'.$ramo.'/'.$año.'/'.$semestre;
+   	$user = "JulioGodoy";
+    $ramo = "InteligenciaArtificial";
+    $semestre = "SI";
+    $año = "2017";
+    $directorio = $user.'/'.$ramo.'/'.$año.$semestre;
 
-   		// $fileName = $request->file->getClientOriginalName();
-     //  $fileSize = $request->file->getClientSize();
+ 
+    if ($request->hasFile('file')) {
+        $originalFileName = $request->file->getClientOriginalName();
+        $fileSize = $request->file->getClientSize();
+        $fileExtension =  $request->file->extension();
+        $commpleteFile = $fileName.'.'.$fileExtension;
 
-     //  $request->file->storeAs($directorio,$fileName);
+        $request->file->storeAs($directorio,$commpleteFile);
 
-     //  $tmp_carpeta = $this->carpeta;
-     //  $tmp_carpeta->
-     //  $file->name = $fileName;
-     //  $file->size = $fileSize;
-     //  $file->save();
+        $tmp_carpeta = Carpeta::where('ramo_id', 1)->get();
+
+        $tmp_carpeta[0][$fileName] = $commpleteFile;
+        $tmp_carpeta[0]->save();
+        return "el archivo ". $fileName." se guardara en: ".$directorio;
+    }else{
+      return 'Hubo un error';
+    }
    }
 }
