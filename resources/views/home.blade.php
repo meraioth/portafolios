@@ -10,7 +10,7 @@
                 <div class="panel-body">
                 <ul>
                     @foreach($ramos as $us)
-                    <li><a method="GET" href="{{ url('/ramo/'.$id[$us->codigo]) }}">
+                    <li><a method="GET" href="{{ url('/carpeta/'.$id[$us->codigo]) }}">
                     {!!$us->nombre!!}
                     </a>
                     </li>
