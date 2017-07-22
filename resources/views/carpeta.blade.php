@@ -11,7 +11,7 @@
 
                 <form name="syllabus" method="post" action="/file/syllabus" enctype="multipart/form-data" >
                 {{csrf_field()}}
-                   <li><a href="{{ url('storage/.$directorio')}}">Syllabus: </a> 
+                   <li><a href="{{ url('/show/syllabus.pdf')}}">Syllabus: </a> 
                    {!!$carpeta[0]->syllabus!!} 
                    <input type="file" name="file" placeholder=""> </li>
                    <input type="submit" value="Subir">
@@ -19,7 +19,7 @@
 
                 <form method="post" action="/file/acta" enctype="multipart/form-data">
                 {{csrf_field()}}
-                  <li><a href="#">Acta: </a>
+                  <li><a href="{{ url('/show/acta.pdf')}}">Acta: </a>
                   {!!$carpeta[0]->acta!!}
                   <input type="file" name="file" placeholder="Lista de Clases"></li>
                   <input type="submit" value="Subir">
@@ -27,7 +27,7 @@
 
                 <form method="post" action="/file/planilla" enctype="multipart/form-data">
                 {{csrf_field()}}
-                  <li> <a href="#">Planilla: </a>
+                  <li> <a href="{{ url('/show/planilla.pdf')}}">Planilla: </a>
                    {!!$carpeta[0]->planilla!!}
                    <input type="file" name="file" placeholder="Acta"></li>
                   <input type="submit" value="Subir">

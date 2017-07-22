@@ -24,8 +24,16 @@ class CarpetaController extends Controller{
 
    public function carpeta($ramo_id){
    	
-   		$carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
-      return view('carpeta')->with('carpeta',$carpeta);
+   		$user = "JulioGodoy";
+      $ramo = "InteligenciaArtificial";
+      $semestre = "SI";
+      $año = "2017";
+
+      $directorio = $user.'/'.$ramo.'/'.$año.$semestre;
+
+     $carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
+    // return view('carpeta')->with('carpeta',$carpeta);
+     return view('carpeta',compact('carpeta','directorio'));
    }
 
    public function storeFile(request $request, $fileName){
@@ -53,6 +61,33 @@ class CarpetaController extends Controller{
       }else{
         return 'Hubo un error';
       }
+   }
+
+   public function showSyllabus(){
+    $filename = 'syllabus.pdf';
+    $path = storage_path($filename);
+    return $path;
+    return Response::make(file_get_contents($path), 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="'.$filename.'"'
+    ]);
+   }
+
+   public function showPdf($fileName){
+      $user = "JulioGodoy";
+      $ramo = "InteligenciaArtificial";
+      $semestre = "SI";
+      $año = "2017";
+
+      $directorio = 'app\public\JulioGodoy\InteligenciaArtificial\2017SI\\';
+    // $filename = 'syllabus.pdf';
+      // $path = storage_path($filename);
+      $path = storage_path($directorio.$fileName);
+      // return $path;
+      return Response::make(file_get_contents($path), 200, [
+          'Content-Type' => 'application/pdf',
+          'Content-Disposition' => 'inline; filename="'.$fileName.'"'
+      ]);
    }
 
    private function getEvaluaciones($ramo){

@@ -39,8 +39,7 @@ Route::get('formulario', 'StorageController@index');
 
 
 // Carpeta Controller probando que funcione bien luego lo paso a un controller
-Route::get('/carpeta/{ramo_id}', function($ramo_id)
-{
+Route::get('/carpeta/{ramo_id}', function($ramo_id){
 	$user = "JulioGodoy";
     $ramo = "InteligenciaArtificial";
     $semestre = "SI";
@@ -50,8 +49,25 @@ Route::get('/carpeta/{ramo_id}', function($ramo_id)
 
    	$carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
    	// return view('carpeta')->with('carpeta',$carpeta);
-   	   	return view('carpeta',compact('carpeta','directorio'));
+   	return view('carpeta',compact('carpeta','directorio'));
+});
 
+Route::get('/show/{fileName}',function($fileName){
+
+	$user = "JulioGodoy";
+    $ramo = "InteligenciaArtificial";
+    $semestre = "SI";
+    $año = "2017";
+
+    $directorio = 'app\public\JulioGodoy\InteligenciaArtificial\2017SI\\';
+	// $filename = 'syllabus.pdf';
+    // $path = storage_path($filename);
+    $path = storage_path($directorio.$fileName);
+    // return $path;
+    return Response::make(file_get_contents($path), 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="'.$fileName.'"'
+    ]);
 });
 
 Route::post('/file/{fileName}', function(request $request, $fileName){
@@ -79,7 +95,6 @@ Route::post('/file/{fileName}', function(request $request, $fileName){
 	}else{
 		return 'Hubo un error';
 	}
-
 });
 
 
