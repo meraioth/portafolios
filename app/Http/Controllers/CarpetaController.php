@@ -11,7 +11,7 @@ use App\Evaluacion;
 use App\User;
 
 use Illuminate\Support\Facades\Auth;
-
+use Response;
 
 
 class CarpetaController extends Controller{
@@ -42,7 +42,7 @@ class CarpetaController extends Controller{
       $semestre = "Semestre ".session()->get('ramo')->semestre;
       $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
       $año = session()->get('ramo')->ano;
-      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre;
+      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/';
 
    
       if ($request->hasFile('file')) {
@@ -63,15 +63,6 @@ class CarpetaController extends Controller{
       }
    }
 
-   public function showSyllabus(){
-    $filename = 'syllabus.pdf';
-    $path = storage_path($filename);
-    return $path;
-    return Response::make(file_get_contents($path), 200, [
-        'Content-Type' => 'application/pdf',
-        'Content-Disposition' => 'inline; filename="'.$filename.'"'
-    ]);
-   }
 
    public function showPdf($fileName){
 
@@ -79,12 +70,10 @@ class CarpetaController extends Controller{
       $semestre = "Semestre ".session()->get('ramo')->semestre;
       $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
       $año = session()->get('ramo')->ano;
-      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre;
+      $directorio = 'app\\'.$user.'\\'.$nombre_ramo.'\\'.$año.'\\'.$semestre.'\\';
 
-    // $filename = 'syllabus.pdf';
-      // $path = storage_path($filename);
       $path = storage_path($directorio.$fileName);
-      // return $path;
+      //return $path;
       return Response::make(file_get_contents($path), 200, [
           'Content-Type' => 'application/pdf',
           'Content-Disposition' => 'inline; filename="'.$fileName.'"'
