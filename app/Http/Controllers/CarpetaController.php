@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Ramo;
 use App\Carpeta;
 use App\Asignatura;
+use App\Evaluacion;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -18,14 +19,21 @@ class CarpetaController extends Controller{
 
    public function index($codigo){
      $evaluaciones = $this->getEvaluaciones($codigo);
-   	return view('ramo',['asignatura'=>$codigo, 'evaluaciones'=>$evaluaciones]);
+
+   	return view('carpeta',['asignatura'=>$codigo, 'evaluaciones'=>$evaluaciones]);
    	  //return view('ramo',['asignatura'=>Asignatura::find($codigo)->nombre]);
    }
 
    public function carpeta($ramo_id){
    	
    		$carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
-      return view('carpeta')->with('carpeta',$carpeta);
+      $evaluaciones = $this->getEvaluaciones($ramo_id);
+      $user = "JulioGodoy";
+      $ramo = "InteligenciaArtificial";
+      $semestre = "SI";
+      $año = "2017";
+      $directorio = $user.'/'.$ramo.'/'.$año.$semestre;
+      return view('carpeta',compact('carpeta','evaluaciones','directorio'));
    }
 
    public function storeFile(request $request, $fileName){

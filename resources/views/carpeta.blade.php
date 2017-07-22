@@ -11,7 +11,7 @@
 
                 <form name="syllabus" method="post" action="/file/syllabus" enctype="multipart/form-data" >
                 {{csrf_field()}}
-                   <li><a href="{{ url('storage/.$directorio')}}">Syllabus: </a> 
+                   <li><a href="{{ asset('storage/app/'.$directorio.'/syllabus.pdf')}}">Syllabus: </a> 
                    {!!$carpeta[0]->syllabus!!} 
                    <input type="file" name="file" placeholder=""> </li>
                    <input type="submit" value="Subir">
@@ -42,11 +42,12 @@
                 <div class="panel-heading">Mis Evaluaciones</div>
 
                 <div class="panel-body">
-              
-                   <li><a href="#"> Syllabus</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
-                   <li><a href="#"> Lista de Clase</a><input type="file" name="Lista Clases" placeholder="Lista de Clases"></li>
-                   <li><a href="#"> Acta </a><input type="file" name="Acta" placeholder="Acta"></li>
-            >
+                   @foreach($evaluaciones as $ev)
+                    <li><a method="GET" href="{{ url('/evaluaciones/'.$ev->id)}}">
+                    {!!$ev->nombre!!}
+                    </a>
+                    </li>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -5,28 +5,31 @@
      <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Mis Evaluaciones</div>
+                <div class="panel-heading">{{$evaluacion->nombre}}</div>
 
-                <form method="POST" action="/storage" accept-charset="UTF-8" enctype="multipart/form-data">
-           
+                <form name="syllabus" method="post" action="/fileEvaluacion/buena" enctype="multipart/form-data" >
+                {{csrf_field()}}
+                   <li><a href="{{ asset('storage/app/'.$directorio.'/syllabus.pdf')}}">Buena: </a> 
+                   {!!$evaluacion->buena!!} 
+                   <input type="file" name="file" placeholder=""> </li>
+                   <input type="submit" value="Subir">
+                </form><br>
 
-                <div class="panel-body">
-                @if ($evaluacion->buena!="")  <li><a href="{{ $evaluacion->id }}"> {!!$evaluacion->buena!!}</a><input type="file" name="Syllabus" placeholder="Syllabus" value="Reemplazr archivo"></li>
-                
-                @else <li><a href="{{ $evaluacion->id }}"> No hay evaluación buena</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
-                 @endif
-                
+                <form method="post" action="/fileEvaluacion/mala" enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li><a href="#">Acta: </a>
+                  {!!$evaluacion->mala!!}
+                  <input type="file" name="file" placeholder="Lista de Clases"></li>
+                  <input type="submit" value="Subir">
+                </form><br>
 
-                @if ($evaluacion->mala!="")  <li><a href="{{ $evaluacion->id }}"> {!!$evaluacion->mala!!}</a><input type="file" name="Syllabus" placeholder="Syllabus"></li> 
-                 @else <li><a href="{{ $evaluacion->id }}"> No hay evaluación mala</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
-                 @endif
-
-                @if ($evaluacion->media!="")  <li><a href="{{ $evaluacion->id }}"> {!!$evaluacion->media!!}</a><input type="file" name="Syllabus" placeholder="Syllabus"></li> 
-                 @else <li><a href="{{ $evaluacion->id }}"> No hay evaluación media</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
-                 @endif
-
-
-                  </form>
+                <form method="post" action="/fileEvaluacion/media" enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="#">Planilla: </a>
+                   {!!$evaluacion->media!!}
+                   <input type="file" name="file" placeholder="Acta"></li>
+                  <input type="submit" value="Subir">
+                </form><br>
 
              
 
