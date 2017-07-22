@@ -97,5 +97,6 @@ Route::get('formulario', 'StorageController@index');
 
 Route::post('/file/{fileName}','CarpetaController@storeFile');
 Route::post('/fileEvaluacion/{fileName}','EvaluacionController@storeFile');
+Route::get('/show/{fileName}','CarpetaController@showPdf');
 
 
