@@ -6,32 +6,29 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Mis Evaluaciones</div>
-                {{$carpeta}}
+
+                <form method="POST" action="/storage" accept-charset="UTF-8" enctype="multipart/form-data">
+           
 
                 <div class="panel-body">
+                @if ($evaluacion->buena!="")  <li><a href="{{ $evaluacion->id }}"> {!!$evaluacion->buena!!}</a><input type="file" name="Syllabus" placeholder="Syllabus" value="Reemplazr archivo"></li>
                 
-                   <li><a href="#"> Buena</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
-                   <li><a href="#"> Mala</a><input type="file" name="Lista Clases" placeholder="Lista de Clases"></li>
-                   <li><a href="#"> Normal</a><input type="file" name="Acta" placeholder="Acta"></li>
-                  
-  
+                @else <li><a href="{{ $evaluacion->id }}"> No hay evaluación buena</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
+                 @endif
+                
+
+                @if ($evaluacion->mala!="")  <li><a href="{{ $evaluacion->id }}"> {!!$evaluacion->mala!!}</a><input type="file" name="Syllabus" placeholder="Syllabus"></li> 
+                 @else <li><a href="{{ $evaluacion->id }}"> No hay evaluación mala</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
+                 @endif
+
+                @if ($evaluacion->media!="")  <li><a href="{{ $evaluacion->id }}"> {!!$evaluacion->media!!}</a><input type="file" name="Syllabus" placeholder="Syllabus"></li> 
+                 @else <li><a href="{{ $evaluacion->id }}"> No hay evaluación media</a><input type="file" name="Syllabus" placeholder="Syllabus"></li>
+                 @endif
 
 
-    <div class="panel-heading">Tus Asignaturas</div>
+                  </form>
 
-                <div class="panel-body">
-                <ul>
-                    @foreach($evaluaciones as $ev)
-                    <li><a method="GET" href="{{ $ev->id }}">
-                    {!!$ev->id!!}
-                    </a>
-                    </li>
-                    @endforeach
-                </ul>
-                </div>
-            </div>
-
-
+             
 
 
          

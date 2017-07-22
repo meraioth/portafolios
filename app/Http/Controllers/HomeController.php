@@ -8,6 +8,7 @@ use App\User;
 use App\Ramo;
 use App\Asignatura;
 use App\Carpeta;
+use App\Evaluacion;
 
 class HomeController extends Controller
 {
@@ -37,13 +38,26 @@ class HomeController extends Controller
         $carpeta = Carpeta::find($idcarpeta);
         $evaluaciones=[];
 
-        foreach ($carpeta->evaluaciones as $evaluacion ) {
+        foreach ($carpeta->evaluacion as $evaluacion ) {
             $evaluaciones[$evaluacion->id]= Evaluacion::find($evaluacion->id);
         }
 
         
 
-        return view('evaluacion',$evaluaciones);
+        return view('evaluacion')->with("evaluaciones",$evaluaciones);
+    }
+
+    public function evaluacion($idevaluacion)
+    {   
+
+        $evaluacion = Evaluacion::find($idevaluacion);
+        
+
+       
+
+        
+
+        return view('evaluacion')->with("evaluacion",$evaluacion);
     }
 
 

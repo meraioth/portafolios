@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/ramo/{nombre}','CarpetaController@index');
+Route::get('/evaluaciones/{idevaluacion}','HomeController@evaluacion');	
 
 Route::get('/carpeta','CarpetaController@index');	
 //Route::get('/evaluaciones/{carpeta}','HomeController@evaluaciones');
@@ -26,5 +27,5 @@ Route::get('/carpeta','CarpetaController@index');
 
 
 
-
+Route::get('formulario', 'StorageController@index');
 
