@@ -11,23 +11,23 @@
                 {{csrf_field()}}
                    <li><a href="{{ asset('storage/app/'.$directorio.'/syllabus.pdf')}}">Buena: </a> 
                    {!!$evaluacion->buena!!} 
-                   <input type="file" name="file" placeholder=""> </li>
+                   <input type="file" name="file" placeholder="Buena"> </li>
                    <input type="submit" value="Subir">
                 </form><br>
 
                 <form method="post" action="/fileEvaluacion/mala" enctype="multipart/form-data">
                 {{csrf_field()}}
-                  <li><a href="#">Acta: </a>
+                  <li><a href="#">Mala: </a>
                   {!!$evaluacion->mala!!}
-                  <input type="file" name="file" placeholder="Lista de Clases"></li>
+                  <input type="file" name="file" placeholder="Mala"></li>
                   <input type="submit" value="Subir">
                 </form><br>
 
                 <form method="post" action="/fileEvaluacion/media" enctype="multipart/form-data">
                 {{csrf_field()}}
-                  <li> <a href="#">Planilla: </a>
+                  <li> <a href="#">Media: </a>
                    {!!$evaluacion->media!!}
-                   <input type="file" name="file" placeholder="Acta"></li>
+                   <input type="file" name="file" placeholder="Media"></li>
                   <input type="submit" value="Subir">
                 </form><br>
 

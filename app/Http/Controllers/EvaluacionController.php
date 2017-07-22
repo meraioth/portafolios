@@ -13,29 +13,31 @@ use Illuminate\Support\Facades\Auth;
 class EvaluacionController extends Controller
 {
 	private $ramo;
+	private $carpeta;
 
     function _construct(){
       $this->ramo = "nada";
+      $this->carpeta = "nada";
     }
     public function view($evaluacion){
         $evaluacion = Evaluacion::find($evaluacion);
-        $carpeta = Carpeta::find($evaluacion->carpeta_id);
-        session()->put('ramo', Asignatura::find(Ramo::find($carpeta->ramo_id)));
+        session()->put('carpeta',Carpeta::find($evaluacion->carpeta_id));
+        session()->put('ramo', Ramo::find(session()->get('carpeta')->ramo_id));
+        $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
         $user = Auth::user()->name;
-	    $nombre_ramo = session()->get('ramo')[0]->nombre;
-	    $semestre = "Semestre ".Asignatura::find(session()->get('ramo')[0]->codigo)->semestre;
-	    $año = session()->get('ramo')[0]->ano;
-	    $directorio = $user.'/'.$nombre_ramo.'/'.$año.$semestre .'/evaluaciones';
+        $semestre = "Semestre ".session()->get('ramo')->semestre;
+        $año = session()->get('ramo')->ano;
+	    $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre .'/evaluaciones';
         return view('evaluacion',compact('evaluacion','directorio'));
     }
 
     public function storeFile(request $request, $fileName){
 
       $user = Auth::user()->name;
-      $semestre = "Semestre ".Asignatura::find(session()->get('ramo')[0]->codigo)->semestre;
-      $ramo_id = session()->get('ramo')[0]->id;
-      $año = session()->get('ramo')[0]->ano;
-      $directorio = $user.'/'.session()->get('ramo')[0]->nombre.'/'.$año.$semestre.'/evaluaciones';
+      $semestre = "Semestre ".session()->get('ramo')->semestre;
+      $año = session()->get('ramo')->ano;
+      $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
+      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones';
 
    
       if ($request->hasFile('file')) {
@@ -46,7 +48,7 @@ class EvaluacionController extends Controller
 
           $request->file->storeAs($directorio,$commpleteFile);
 
-          $tmp_evaluacion = Evaluacion::where('carpeta_id', 1)->get();
+          $tmp_evaluacion = Evaluacion::where('carpeta_id', session()->get('carpeta')->id)->get();
 
           $tmp_evaluacion[0][$fileName] = $commpleteFile;
           $tmp_evaluacion[0]->save();
