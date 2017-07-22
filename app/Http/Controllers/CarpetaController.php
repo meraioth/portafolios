@@ -8,6 +8,7 @@ use App\Ramo;
 use App\Carpeta;
 use App\Asignatura;
 use App\Evaluacion;
+use App\User;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -17,32 +18,30 @@ class CarpetaController extends Controller{
     private $carpeta;
     private $ramo;
 
-   public function index($codigo){
-     $evaluaciones = $this->getEvaluaciones($codigo);
-
-   	return view('carpeta',['asignatura'=>$codigo, 'evaluaciones'=>$evaluaciones]);
-   	  //return view('ramo',['asignatura'=>Asignatura::find($codigo)->nombre]);
-   }
+    function _construct(){
+      $this->ramo = "nada";
+    }
 
    public function carpeta($ramo_id){
    	
    		$carpeta = Carpeta::where('ramo_id',$ramo_id)->get();
       $evaluaciones = $this->getEvaluaciones($ramo_id);
-      $user = "JulioGodoy";
-      $ramo = "InteligenciaArtificial";
-      $semestre = "SI";
-      $año = "2017";
-      $directorio = $user.'/'.$ramo.'/'.$año.$semestre;
+      session()->put('ramo', Asignatura::find(Ramo::find($ramo_id))[0]);
+      $nombre_ramo = session()->get('ramo')->nombre;
+      $user = Auth::user()->name;
+      $semestre = "Semestre ".Asignatura::find(Ramo::find($ramo_id))[0]->semestre;
+      $año = Ramo::find($ramo_id)->ano;
+      $directorio = $user.'/'.$nombre_ramo.'/'.$año.$semestre;
       return view('carpeta',compact('carpeta','evaluaciones','directorio'));
    }
 
    public function storeFile(request $request, $fileName){
-
-     	$user = "JulioGodoy";
-      $ramo = "InteligenciaArtificial";
-      $semestre = "SI";
-      $año = "2017";
-      $directorio = $user.'/'.$ramo.'/'.$año.$semestre;
+     	$user = Auth::user()->name;
+      echo(session()->get('ramo')->codigo);
+      $semestre = "Semestre ".Asignatura::find(session()->get('ramo')->codigo)->semestre;
+      $ramo_id = session()->get('ramo')->id;
+      $año = session()->get('ramo')->ano;
+      $directorio = $user.'/'.session()->get('ramo')->nombre.'/'.$año.$semestre;
 
    
       if ($request->hasFile('file')) {
