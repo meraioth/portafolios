@@ -13,6 +13,8 @@
                    {!!$evaluacion->buena!!} 
                    <input type="file" name="file" placeholder="Buena"> </li>
                    <input type="submit" value="Subir">
+                   <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
+                   <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
                 </form><br>
 
                 <form method="post" action="/fileEvaluacion/mala" enctype="multipart/form-data">

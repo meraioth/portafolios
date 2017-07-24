@@ -50,6 +50,11 @@
                     </li>
                     @endforeach
                 </div>
+                 <div>
+                  <form action="{{url('/'.$carpeta[0]->id.'/evaluacion/create')}}">
+                    <button class="btn" type="submit" align="center" >Crear Evaluación</button>
+                    </form>
+                  </div>
             </div>
         </div>
     </div>

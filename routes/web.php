@@ -39,4 +39,8 @@ Route::post('/file/{fileName}','CarpetaController@storeFile');
 Route::post('/fileEvaluacion/{fileName}','EvaluacionController@storeFile');
 Route::get('/show/{fileName}','CarpetaController@showPdf');
 
+Route::get('/{carpeta_id}/evaluacion/create' ,'EvaluacionController@create');
+Route::post('/evaluacion/store','EvaluacionController@store');
+
+
 

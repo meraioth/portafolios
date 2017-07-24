@@ -37,7 +37,7 @@ class EvaluacionController extends Controller
       $semestre = "Semestre ".session()->get('ramo')->semestre;
       $año = session()->get('ramo')->ano;
       $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
-      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones';
+      $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones/'.$request->nombre;
 
    
       if ($request->hasFile('file')) {
@@ -52,9 +52,44 @@ class EvaluacionController extends Controller
 
           $tmp_evaluacion[0][$fileName] = $commpleteFile;
           $tmp_evaluacion[0]->save();
-          return "el archivo ". $fileName." se guardara en: ".$directorio;
+          return redirect('/evaluaciones/'.$request->evaluacion_id);
       }else{
         return 'Hubo un error';
       }
    }
+
+   /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($carpeta_id)
+    {
+        return view('create_evaluacion')->with('carpeta_id',$carpeta_id);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $eval = new Evaluacion;
+        $eval->nombre= $request->nombre;
+        $eval->tipo=$request->tipo;
+        $eval->carpeta_id=$request->carpeta_id;
+        $eval->buena="";
+        $eval->mala="";
+        $eval->media="";
+        $eval->save();
+        foreach (Auth::user()->ramos as $ramo ) {
+            if($ramo->carpeta->id == $request->carpeta_id)
+                return redirect('/carpeta/'.$ramo->id);
+
+        }
+        return view('create_evaluacion')->with('carpeta_id',$carpeta_id);
+    }
+
 }
