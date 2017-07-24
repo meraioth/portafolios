@@ -30,10 +30,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/carpeta/{ramo_id}','CarpetaController@carpeta');
 Route::get('/evaluaciones/{id}','EvaluacionController@view');
-
+Route::get('/evaluacion/delete/{id}','EvaluacionController@destroy');
+Route::get('/ramo/create','RamoController@create');
 
 Route::get('formulario', 'StorageController@index');
-
+Route::post('/ramo/store','RamoController@store');
+Route::get('/ramo/delete/{id}','RamoController@destroy');
 
 Route::post('/file/{fileName}','CarpetaController@storeFile');
 Route::post('/fileEvaluacion/{fileName}','EvaluacionController@storeFile');

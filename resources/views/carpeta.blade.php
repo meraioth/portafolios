@@ -47,12 +47,14 @@
                     <li><a method="GET" href="{{ url('/evaluaciones/'.$ev->id)}}">
                     {!!$ev->nombre!!}
                     </a>
+                     &nbsp; &nbsp;&nbsp; &nbsp;
+                    <a class="btn btn-default" method="GET" href="{{ url('/evaluacion/delete/'.$ev->id) }}">X</a>
                     </li>
                     @endforeach
                 </div>
-                 <div>
+                 <div div align="center">
                   <form action="{{url('/'.$carpeta[0]->id.'/evaluacion/create')}}">
-                    <button class="btn" type="submit" align="center" >Crear Evaluación</button>
+                    <button  type="submit" align="center" >Crear Evaluación</button>
                     </form>
                   </div>
             </div>

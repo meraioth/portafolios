@@ -33,7 +33,7 @@
                     @endforeach
                  <div>
                   <form action="{{url('/'.$carpeta_id.'/evaluacion/create')}}">
-                    <button class="btn" type="submit" align="center">Crear Evaluación</button>
+                    <button type="submit" align="center">Crear Evaluación</button>
                     </form>
                   </div>
                 

@@ -92,4 +92,17 @@ class EvaluacionController extends Controller
         return view('create_evaluacion')->with('carpeta_id',$carpeta_id);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $evaluacion = Evaluacion::find($id);
+        $evaluacion->delete();
+        return redirect()->back();
+    }
+
 }

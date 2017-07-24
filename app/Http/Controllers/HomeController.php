@@ -29,7 +29,8 @@ class HomeController extends Controller
      */
     public function index(){
         $ramos= $this->getRamos();
-        return view('home',['ramos'=>$ramos[0],'id'=>$ramos[1]]);
+        
+        return view('home',['ramos'=>$ramos[0],'Ramos'=>$ramos[1]]);
     }
 
     private function getRamos(){
@@ -37,10 +38,10 @@ class HomeController extends Controller
         $salida2 =[];
         foreach (Auth::user()->ramos as $ramo ) {
             
-            $salida1[$ramo->codigo_asignatura]= Asignatura::find($ramo->codigo_asignatura);
-            $salida2[$ramo->codigo_asignatura]= $ramo->id;
+            $salida1[$ramo->id]= Asignatura::find($ramo->codigo_asignatura);
+            
         }
-        return [$salida1,$salida2];
+        return [$salida1,Auth::user()->ramos];
     }
 
     

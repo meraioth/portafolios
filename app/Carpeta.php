@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Carpeta extends Model
 {
      protected $fillable = [
-        'fecha_subida', 'planilla', 'syllabus', 'acta','zip'
+        'fecha_subida', 'planilla', 'syllabus', 'acta','zip','ramo_id',
     ];
    public function ramo(){
     	return $this->hasOne('App\Ramo');
