@@ -30,9 +30,16 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" >
+                    @if (Auth::guest())
+                    <a class="navbar-brand" method="GET" href="{{ url('/home') }}" >
                         {{ config('app.name', 'Recolector') }}
                     </a>
+                     @else
+                     <a class="navbar-brand" method="GET" href="{{ url('/') }}" >
+                        {{ config('app.name', 'Recolector') }}
+                    </a>
+                     @endif
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

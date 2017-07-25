@@ -10,9 +10,10 @@
                 <form name="syllabus" method="post" action="/fileEvaluacion/buena" enctype="multipart/form-data" >
                 {{csrf_field()}}
                    <li><a href="{{ asset('storage/app/'.$directorio.'/syllabus.pdf')}}">Buena: </a> 
-                   {!!$evaluacion->buena!!} 
+                   {!!$evaluacion->buena!!} &nbsp;
                    <input type="file" name="file" placeholder="Buena"> </li>
-                   <input type="submit" value="Subir">
+                   <br> &nbsp;
+                   <input type="submit" class="btn btn-primary" value="Subir">
                    <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
                    <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
                 </form><br>
@@ -21,16 +22,19 @@
                 {{csrf_field()}}
                   <li><a href="#">Mala: </a>
                   {!!$evaluacion->mala!!}
+                  &nbsp;
                   <input type="file" name="file" placeholder="Mala"></li>
-                  <input type="submit" value="Subir">
+                  <br>&nbsp;
+                  <input type="submit" class="btn btn-primary" value="Subir">
                 </form><br>
 
                 <form method="post" action="/fileEvaluacion/media" enctype="multipart/form-data">
                 {{csrf_field()}}
                   <li> <a href="#">Media: </a>
-                   {!!$evaluacion->media!!}
+                   {!!$evaluacion->media!!}&nbsp;
                    <input type="file" name="file" placeholder="Media"></li>
-                  <input type="submit" value="Subir">
+                   <br>&nbsp;
+                  <input type="submit" class="btn btn-primary" value="Subir">
                 </form><br>
 
              

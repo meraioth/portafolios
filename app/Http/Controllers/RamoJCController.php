@@ -11,7 +11,7 @@ class RamoJCController extends Controller
    public function index($id){
         $ramos= $this->getRamos($id);
         
-        return view('ramo_jc',['ramos'=>$ramos[0],'Ramos'=>$ramos[1]]);
+        return view('ramo_jc',['ramos'=>$ramos[0],'Ramos'=>$ramos[1],'user'=>$id]);
     }
 
     private function getRamos($id){

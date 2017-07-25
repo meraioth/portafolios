@@ -10,7 +10,7 @@
                 <div class="panel-body">
                 <ul>
                     @foreach($Ramos as $us)
-                    <li><a method="GET" href="{{ url('/zip/'.$us->id) }}">
+                    <li><a method="GET" href="{{ url('/zip/'.$user.'/'.$us->id) }}">
                     {!!$ramos[$us->id]->nombre.'-'.$us->ano.'-'.$us->semestre!!}
                     </a>
                     <!-- &nbsp; &nbsp;&nbsp; &nbsp;

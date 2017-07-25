@@ -34,7 +34,7 @@
                 <div class="panel-body">
                 <ul>
                   @foreach($usuarios as $usuario)
-                    <li><a method="GET" href="{{ url('/ramo_jc/'.$usuario-      >id) }}">
+                    <li><a method="GET" href="{{ url('/ramo_jc/'.$usuario->id) }}">
                     {!!$usuario->name!!}
                     </a>
                     <!-- &nbsp; &nbsp;&nbsp; &nbsp;
