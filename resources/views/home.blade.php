@@ -19,11 +19,11 @@
                     @endforeach
                 </ul>
                 </div>
-                <!--  <div align="center">
+                <  <div align="center">
                   <form action="{{url('/ramo/create')}}">
                     <button type="submit" align="center" >Crear Ramo</button>
                     </form>
-                  </div> -->
+                  </div> 
 
 
             </div>
