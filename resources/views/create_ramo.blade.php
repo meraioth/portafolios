@@ -30,7 +30,7 @@
                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                    <br>
                    <div align="center">
-                   <button  type="submit">Crear</button>
+                   <button  type="submit" class="btn btn-primary">Crear</button>
                    </div>
                 </form>
                 </div>
