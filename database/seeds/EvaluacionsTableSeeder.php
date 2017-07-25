@@ -18,6 +18,8 @@ class EvaluacionsTableSeeder extends Seeder
             'buena'=>'buena.pdf',
             'media'=>'media.pdf',
             'mala'=>'mala.pdf',
+            'pauta'=>'pauta.pdf',
+            'otro'=>'otro.pdf'
            
             
         ]);

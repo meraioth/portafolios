@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Evaluacion extends Migration
+class ModificarEvaluacion extends Migration
 {
     /**
      * Run the migrations.
@@ -20,6 +20,8 @@ class Evaluacion extends Migration
             $table->string('buena');
             $table->string('media');
             $table->string('mala');
+            $table->string('otro');
+            $table->string('pauta');
             $table->integer('carpeta_id')->unsigned();
 
             $table->foreign('carpeta_id')
@@ -41,3 +43,4 @@ class Evaluacion extends Migration
        Schema::dropIfExists('evaluacions');
     }
 }
+
