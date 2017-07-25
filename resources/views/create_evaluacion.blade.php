@@ -9,8 +9,9 @@
 
                 <div class="panel-body">
                 <form method="POST" action="{{url('/evaluacion/store')}}">
-                <input type="text" name="nombre" placeholder="Nombre Evaluacion">
-                <select name="tipo">
+                <input class="form-control" type="text" name="nombre" placeholder="Nombre Evaluacion">
+                <br>
+                <select class="form-control" name="tipo">
                     <option value="Certamen">Certamen</option>
                     <option value="Test">Test</option>
                     <option value="Quiz">Quiz</option>
@@ -20,6 +21,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <input type="hidden" name="carpeta_id" value="{!!$carpeta_id!!}">
+                <br>
                 <button type="submit" class="btn btn-primary">Crear</button>
                </form>
                 </div>

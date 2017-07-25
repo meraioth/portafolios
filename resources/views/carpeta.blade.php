@@ -50,10 +50,10 @@
                     <li><a method="GET" href="{{ url('/evaluaciones/'.$ev->id)}}">
                     {!!$ev->nombre!!}
                     </a>
-                     <div class="text-right"  >
-                    <a class="btn btn-primary" method="GET" href="{{ url('/evaluacion/delete/'.$ev->id) }}">x</a>
-                    </div>
+                    
+                    <a class="btn btn-primary pull-right btn-sm RbtnMargin" method="GET" href="{{ url('/evaluacion/delete/'.$ev->id) }}">x</a>
                     </li>
+                    <br>
                     @endforeach
                 </div>
                  <div div align="center">
