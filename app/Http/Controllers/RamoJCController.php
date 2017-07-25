@@ -8,6 +8,7 @@ use App\Asignatura;
 use App\Ramo;
 use ZipArchive;
 use File;
+use Session;
 
 class RamoJCController extends Controller
 {
@@ -77,9 +78,7 @@ class RamoJCController extends Controller
         $zipName = $this->zipCarpeta($urlCarpeta,$asignatura,$ramo);
         echo public_path($zipName);
         $headers = array('Content-Type' => File::mimeType(public_path($zipName)));
-        Session::flash('download.in.the.next.request',public_path($zipName));
-        redirect()->back();
-        //return response()->download(public_path($zipName),$zipName,$headers);
+        return response()->download(public_path($zipName),$zipName,$headers);
     }
 
     /**
