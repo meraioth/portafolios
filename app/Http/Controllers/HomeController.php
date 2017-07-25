@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index(){
         $ramos= $this->getRamos();
         
-        return view('home',['ramos'=>$ramos[0],'Ramos'=>$ramos[1]]);
+        return view('home',['ramos'=>$ramos[0],'Ramos'=>$ramos[1],'usuarios'=>User::all()]);
     }
 
     private function getRamos(){

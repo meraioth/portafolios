@@ -98,7 +98,7 @@ class RamoController extends Controller
         $carpeta=$ramo->carpeta;
         DB::table('evaluacions')->where('carpeta_id','=',$carpeta->id)->delete();
         $carpeta->delete();
-        DB::table('ramo_user')->where('ramo_id','=',$ramo-  >id)->delete();
+        DB::table('ramo_user')->where('ramo_id','=',$ramo->id)->delete();
         $ramo->delete();
         return redirect('home');
     }

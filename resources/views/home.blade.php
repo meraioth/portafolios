@@ -13,17 +13,17 @@
                     <li><a method="GET" href="{{ url('/carpeta/'.$us->id) }}">
                     {!!$ramos[$us->id]->nombre.'-'.$us->ano.'-'.$us->semestre!!}
                     </a>
-                    &nbsp; &nbsp;&nbsp; &nbsp;
-                    <a class="btn btn-default" method="GET" href="{{ url('/ramo/delete/'.$us->id) }}">X</a>
+                    <!-- &nbsp; &nbsp;&nbsp; &nbsp;
+                    <a class="btn btn-default" method="GET" href="{{ url('/ramo/delete/'.$us->id) }}">X</a> -->
                     </li>
                     @endforeach
                 </ul>
                 </div>
-                 <div align="center">
+                <!--  <div align="center">
                   <form action="{{url('/ramo/create')}}">
                     <button type="submit" align="center" >Crear Ramo</button>
                     </form>
-                  </div>
+                  </div> -->
 
 
             </div>
@@ -33,7 +33,14 @@
                 {{csrf_field()}}
                 <div class="panel-body">
                 <ul>
-                 
+                  @foreach($usuarios as $usuario)
+                    <li><a method="GET" href="{{ url('/jc_ramo/'.$us->id) }}">
+                    {!!$usuario->name!!}
+                    </a>
+                    <!-- &nbsp; &nbsp;&nbsp; &nbsp;
+                    <a class="btn btn-default" method="GET" href="{{ url('/ramo/delete/'.$us->id) }}">X</a> -->
+                    </li>
+                    @endforeach
                 </ul>
                 </div>
                 @endif
