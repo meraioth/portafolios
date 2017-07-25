@@ -44,5 +44,5 @@ Route::get('/show/{fileName}','CarpetaController@showPdf');
 Route::get('/{carpeta_id}/evaluacion/create' ,'EvaluacionController@create');
 Route::post('/evaluacion/store','EvaluacionController@store');
 
-
+Route::get('/ramo_jc/{id}','RamoJCController@index');
 

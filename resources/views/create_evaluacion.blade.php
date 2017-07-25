@@ -20,7 +20,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <input type="hidden" name="carpeta_id" value="{!!$carpeta_id!!}">
-                <button class="btn" type="submit">Crear</button>
+                <button type="submit" class="btn btn-primary">Crear</button>
                </form>
                 </div>
             </div>
