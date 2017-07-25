@@ -37,7 +37,24 @@
                   <input type="submit" class="btn btn-primary" value="Subir">
                 </form><br>
 
-             
+                   <form method="post" action="/fileEvaluacion/media" enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="#">Pauta: </a>
+                   {!!$evaluacion->pauta!!}&nbsp;
+                   <input type="file" name="file" placeholder="Pauta"></li>
+                   <br>&nbsp;
+                  <input type="submit" class="btn btn-primary" value="Subir">
+                </form><br>             
+
+
+                 <form method="post" action="/fileEvaluacion/media" enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="#">Otro: </a>
+                   {!!$evaluacion->otro!!}&nbsp;
+                   <input type="file" name="file" placeholder="Otro"></li>
+                   <br>&nbsp;
+                  <input type="submit" class="btn btn-primary" value="Subir">
+                </form><br>             
 
 
          
