@@ -13,15 +13,12 @@
                     <li><a method="GET" href="{{ url('/carpeta/'.$us->id) }}">
                     {!!$ramos[$us->id]->nombre.'-'.$us->ano.'-'.$us->semestre!!}
                     </a>
-                    <!-- &nbsp; &nbsp;&nbsp; &nbsp;
-                    <a class="btn btn-default" method="GET" href="{{ url('/ramo/delete/'.$us->id) }}">X</a> -->
                     </li>
                     @endforeach
                 </ul>
                 </div>
-                <  <div align="center">
+                  <div align="center">
                   <form action="{{url('/ramo/create')}}">
-                    <button type="submit" align="center" class="btn btn-primary">Crear Ramo</button>
                     </form>
                   </div> 
 
@@ -37,8 +34,6 @@
                     <li><a method="GET" href="{{ url('/ramo_jc/'.$usuario->id) }}">
                     {!!$usuario->name!!}
                     </a>
-                    <!-- &nbsp; &nbsp;&nbsp; &nbsp;
-                    <a class="btn btn-default" method="GET" href="{{ url('/ramo/delete/'.$us->id) }}">X</a> -->
                     </li>
                     @endforeach
                 </ul>
