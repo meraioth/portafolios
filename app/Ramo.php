@@ -11,7 +11,7 @@ class Ramo extends Model
     ],$table='ramos';
 
     public function asignatura(){
-    	return $this->belongsTo(Asignatura::class,'codigo','codigo_asignatura');
+    	return $this->belongsTo(Asignatura::class,'codigo_asignatura','codigo');
     }
 
     public function users(){
