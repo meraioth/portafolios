@@ -84,17 +84,12 @@ class RamoJCController extends Controller
         $zipName = $this->zipCarpeta($urlCarpeta,$asignatura,$ramo);
         if($zipName != false){
         $headers = array('Content-Type' => File::mimeType(public_path($zipName)));
-<<<<<<< HEAD
-        Session::flash('download.in.the.next.request',public_path($zipName));
-        redirect()->back();
-        //return response()->download(public_path($zipName),$zipName,$headers);
-=======
+
         Session::flash('nofile',false);
         return response()->download(public_path($zipName),$zipName,$headers);
         
         }else {Session::flash('nofile',true);
             return redirect()->back();}
->>>>>>> a30c65e406b55719f9b510d2436d923721fdfc40
     }
 
     /**
