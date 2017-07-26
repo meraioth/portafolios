@@ -19,6 +19,9 @@
                     @endforeach
                 </ul>
                 </div>
+                @if(Session::get('nofile')==true)
+                 <div>No se han añadido archivos a este ramo</div>
+                @endif
                 <!--  <div align="center">
                   <form action="{{url('/ramo/create')}}">
                     <button type="submit" align="center" class="btn btn-primary">Crear Ramo</button>

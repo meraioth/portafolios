@@ -32,6 +32,11 @@ class RamoJCController extends Controller
     private function zipCarpeta($urlCarpeta,$asignatura,$ramo){
                 // Get real path for our folder
         $rootPath = realpath($urlCarpeta);
+        if($rootPath == false){ 
+            return false;
+        }
+        else{
+
         //echo $rootPath;
 
         // Initialize archive object
@@ -62,6 +67,7 @@ class RamoJCController extends Controller
         // Zip archive will be created only after closing object
         $zip->close();
         return $asignatura->nombre.$ramo->ano.'-'.$ramo->semestre.'.zip';
+        }
     }
 
     /**
@@ -76,11 +82,19 @@ class RamoJCController extends Controller
         $asignatura = $ramo->asignatura;
         $urlCarpeta = storage_path()."/app/".$nombreUsuario."/".$asignatura->nombre."/".$ramo->ano."/Semestre ".$ramo->semestre."/";
         $zipName = $this->zipCarpeta($urlCarpeta,$asignatura,$ramo);
-        echo public_path($zipName);
+        if($zipName != false){
         $headers = array('Content-Type' => File::mimeType(public_path($zipName)));
+<<<<<<< HEAD
         Session::flash('download.in.the.next.request',public_path($zipName));
         redirect()->back();
         //return response()->download(public_path($zipName),$zipName,$headers);
+=======
+        Session::flash('nofile',false);
+        return response()->download(public_path($zipName),$zipName,$headers);
+        
+        }else {Session::flash('nofile',true);
+            return redirect()->back();}
+>>>>>>> a30c65e406b55719f9b510d2436d923721fdfc40
     }
 
     /**
