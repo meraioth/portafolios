@@ -24,6 +24,8 @@ Requerimientos [1]
 </p>
 
 <p>
+-Modificar size file en php.ini (a 15mb o más)
+
 -Crear una base de datos en MySQL con nombre a elección (recordar nombre, usuario y password)
 
 -Clonar repositorio : https://github.com/meraioth/portafolios
