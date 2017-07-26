@@ -24,7 +24,7 @@ Requerimientos [1]
 </p>
 <p>MER
 
-![mer](https://github.com/meraioth/portafolios/Mer.png)
+![mer](https://user-images.githubusercontent.com/11747949/28603449-2268a1dc-7192-11e7-9065-dfa800980b77.png)
 </p>
 <p>
 -Modificar size file en php.ini (a 15mb o más)
