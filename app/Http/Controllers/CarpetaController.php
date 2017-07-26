@@ -57,7 +57,7 @@ class CarpetaController extends Controller{
 
           $tmp_carpeta[0][$fileName] = $commpleteFile;
           $tmp_carpeta[0]->save();
-          return "el archivo ". $fileName." se guardara en: ".$directorio;
+          return redirect('/carpeta/'.$tmp_carpeta[0]->id);
       }else{
         return 'Hubo un error';
       }
@@ -70,7 +70,7 @@ class CarpetaController extends Controller{
       $semestre = "Semestre ".session()->get('ramo')->semestre;
       $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
       $año = session()->get('ramo')->ano;
-      $directorio = 'app\\'.$user.'\\'.$nombre_ramo.'\\'.$año.'\\'.$semestre.'\\';
+      $directorio = 'app/'.$user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/';
 
       $path = storage_path($directorio.$fileName);
       //return $path;
