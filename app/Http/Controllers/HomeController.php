@@ -29,8 +29,19 @@ class HomeController extends Controller
      */
     public function index(){
         $ramos= $this->getRamos();
-        
-        return view('home',['ramos'=>$ramos[0],'Ramos'=>$ramos[1],'usuarios'=>User::all()]);
+        //dd($ramos);
+
+        $fechas = array();
+        foreach($ramos[1] as $ramo){
+            //dd($ramo);
+            $fecha = $ramo->ano;
+            $fechas[$fecha] = $fecha; 
+        }   
+
+        //ramos es asignatura parece
+        return view('home',['fechas'=>$fechas,'ramos'=>$ramos[0],'Ramos'=>$ramos[1],'usuarios'=>User::all()]);
+
+        //return view('home',compact('ramos','Ramos','usuario'));
     }
 
     private function getRamos(){
