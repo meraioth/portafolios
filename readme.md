@@ -33,48 +33,84 @@ Requerimientos [1]
 
 <p>
 APP_NAME=Laravel
+
 APP_ENV=local
+
 APP_KEY=
+
 APP_DEBUG=true
+
 APP_LOG_LEVEL=debug
+
 APP_URL=http://localhost
 
+
+
 DB_CONNECTION=mysql
+
 DB_HOST=127.0.0.1
+
 DB_PORT=3306
+
 DB_DATABASE=nombre_base_de_datos
+
 DB_USERNAME=root
+
 DB_PASSWORD=
 
+
 BROADCAST_DRIVER=log
+
 CACHE_DRIVER=file
+
 SESSION_DRIVER=file
+
 QUEUE_DRIVER=sync
 
+
 REDIS_HOST=127.0.0.1
+
 REDIS_PASSWORD=null
+
 REDIS_PORT=6379
 
+
 MAIL_DRIVER=smtp
+
 MAIL_HOST=smtp.mailtrap.io
+
 MAIL_PORT=2525
+
 MAIL_USERNAME=null
+
 MAIL_PASSWORD=null
+
 MAIL_ENCRYPTION=null
 
 PUSHER_APP_ID=
+
 PUSHER_APP_KEY=
+
 PUSHER_APP_SECRET=
+
 </p>
 <p>Guardar archivo, en terminal ir a directorio de proyecto, 
+
 Ejecutar : 
+
+
 php artisan key:generate
+
 php artisan migrate
+
 php artisan seed
+
 
 chmod –R 775 directorio_proyecto.
 </p>
 
 <p>[1] https://laravel.com/docs/5.4#installation
+
 [2] http://php.net/manual/es/zip.installation.php
+
 </p>
