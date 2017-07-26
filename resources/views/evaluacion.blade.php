@@ -5,7 +5,7 @@
      <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">{{$evaluacion->nombre}}</div>
+                <div class="panel-heading">{{$evaluacion->nombre}} {{$evaluacion->fecha}}</div>
 
                 <form name="syllabus" method="post" action="/fileEvaluacion/buena" enctype="multipart/form-data" >
                 {{csrf_field()}}

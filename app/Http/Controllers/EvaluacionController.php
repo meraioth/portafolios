@@ -78,9 +78,12 @@ class EvaluacionController extends Controller
     {
         $eval = new Evaluacion;
         $eval->nombre= $request->nombre;
+        $eval->fecha= $request->fecha;
         $eval->tipo=$request->tipo;
         $eval->carpeta_id=$request->carpeta_id;
         $eval->buena="";
+        $eval->otro="";
+        $eval->pauta="";
         $eval->mala="";
         $eval->media="";
         $eval->save();

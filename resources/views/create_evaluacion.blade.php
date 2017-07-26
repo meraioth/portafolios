@@ -11,6 +11,8 @@
                 <form method="POST" action="{{url('/evaluacion/store')}}">
                 <input class="form-control" type="text" name="nombre" placeholder="Nombre Evaluacion">
                 <br>
+                <input class="form-control" type="text" name="fecha" placeholder="Fecha">
+                <br>
                 <select class="form-control" name="tipo">
                     <option value="Certamen">Certamen</option>
                     <option value="Test">Test</option>

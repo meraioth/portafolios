@@ -22,6 +22,7 @@ class ModificarEvaluacion extends Migration
             $table->string('mala');
             $table->string('otro');
             $table->string('pauta');
+            $table->string('fecha');
             $table->integer('carpeta_id')->unsigned();
 
             $table->foreign('carpeta_id')
