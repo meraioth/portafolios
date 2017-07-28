@@ -38,8 +38,11 @@ Route::post('/ramo/store','RamoController@store');
 Route::get('/ramo/delete/{id}','RamoController@destroy');
 
 Route::post('/file/{fileName}','CarpetaController@storeFile');
-Route::post('/fileEvaluacion/{fileName}','EvaluacionController@storeFile');
 Route::get('/show/{fileName}','CarpetaController@showPdf');
+
+Route::post('/fileEvaluacion/{fileName}','EvaluacionController@storeFile');
+Route::get('/showEvaluacion/{nombre_evaluacion}/{fileName}','EvaluacionController@showPdf');
+
 
 Route::get('/{carpeta_id}/evaluacion/create' ,'EvaluacionController@create');
 Route::post('/evaluacion/store','EvaluacionController@store');

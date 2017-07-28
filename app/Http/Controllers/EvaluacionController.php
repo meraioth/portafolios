@@ -8,12 +8,14 @@ use App\Carpeta;
 use App\Ramo;
 use App\Asignatura;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 
 class EvaluacionController extends Controller
 {
 	private $ramo;
 	private $carpeta;
+  private $directorio;
 
     function _construct(){
       $this->ramo = "nada";
@@ -27,7 +29,7 @@ class EvaluacionController extends Controller
         $user = Auth::user()->name;
         $semestre = "Semestre ".session()->get('ramo')->semestre;
         $año = session()->get('ramo')->ano;
-	    $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre .'/evaluaciones';
+	     $this->directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre .'/evaluaciones/'.$evaluacion->nombre;
         return view('evaluacion',compact('evaluacion','directorio'));
     }
 
@@ -38,7 +40,7 @@ class EvaluacionController extends Controller
       $año = session()->get('ramo')->ano;
       $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
       $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones/'.$request->nombre;
-
+      // dd($directorio);
    
       if ($request->hasFile('file')) {
           $originalFileName = $request->file->getClientOriginalName();
@@ -58,6 +60,21 @@ class EvaluacionController extends Controller
       }
    }
 
+   public function showPdf($evaluacion,$fileName){
+      $user = Auth::user()->name;
+      $semestre = "Semestre ".session()->get('ramo')->semestre;
+      $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
+      $año = session()->get('ramo')->ano;
+      $dir = 'app/'.$user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones/'.$evaluacion.'/';
+
+      $path = storage_path($dir.$fileName);
+      //return $path;
+      return Response::make(file_get_contents($path), 200, [
+          'Content-Type' => 'application/pdf',
+          'Content-Disposition' => 'inline; filename="'.$fileName.'"'
+      ]);
+   }
+
    /**
      * Show the form for creating a new resource.
      *
@@ -74,8 +91,7 @@ class EvaluacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $eval = new Evaluacion;
         $eval->nombre= $request->nombre;
         $eval->fecha= $request->fecha;
