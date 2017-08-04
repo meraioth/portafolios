@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{$evaluacion->nombre}} {{$evaluacion->fecha}}</div>
 
-                <form name="syllabus" method="post" action="/fileEvaluacion/buena" enctype="multipart/form-data" >
+                <form name="syllabus" method="post" action={{url('/fileEvaluacion/buena')}} enctype="multipart/form-data" >
                 {{csrf_field()}}
                    <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/buena.pdf')}}">Buena: </a> 
                    {!!$evaluacion->buena!!} &nbsp;
@@ -18,7 +18,7 @@
                    <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
                 </form><br>
 
-                <form method="post" action="/fileEvaluacion/mala" enctype="multipart/form-data">
+                <form method="post" action={{url('/fileEvaluacion/mala')}} enctype="multipart/form-data">
                 {{csrf_field()}}
                   <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/mala.pdf')}}">Mala: </a>
                   {!!$evaluacion->mala!!}
@@ -30,7 +30,7 @@
                    <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
                 </form><br>
 
-                <form method="post" action="/fileEvaluacion/media" enctype="multipart/form-data">
+                <form method="post" action={{url('/fileEvaluacion/media')}} enctype="multipart/form-data">
                 {{csrf_field()}}
                   <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/media.pdf')}}">Media: </a>
                    {!!$evaluacion->media!!}&nbsp;
