@@ -57,7 +57,7 @@ class CarpetaController extends Controller{
 
           $tmp_carpeta[0][$fileName] = $commpleteFile;
           $tmp_carpeta[0]->save();
-          return redirect('/carpeta/'.$tmp_carpeta[0]->id);
+          return redirect('/carpeta/'.$tmp_carpeta[0]->ramo_id);
       }else{
         return 'Hubo un error';
       }
