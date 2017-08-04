@@ -28,7 +28,7 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" placeholder="RUT" required>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="RUT sin puntos ni guión" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
