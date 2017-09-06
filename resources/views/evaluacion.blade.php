@@ -9,7 +9,7 @@
 
                 <form name="syllabus" method="post" action={{url('/fileEvaluacion/buena')}} enctype="multipart/form-data" >
                 {{csrf_field()}}
-                   <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/buena.pdf')}}">Buena: </a> 
+                   <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/buena.pdf')}}">Evaluación Buena: </a> 
                    {!!$evaluacion->buena!!} &nbsp;
                    <input type="file" name="file" placeholder="Buena"> </li>
                    <br> &nbsp;
@@ -20,7 +20,7 @@
 
                 <form method="post" action={{url('/fileEvaluacion/mala')}} enctype="multipart/form-data">
                 {{csrf_field()}}
-                  <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/mala.pdf')}}">Mala: </a>
+                  <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/mala.pdf')}}">Evaluación Deficiente: </a>
                   {!!$evaluacion->mala!!}
                   &nbsp;
                   <input type="file" name="file" placeholder="Mala"></li>
@@ -32,7 +32,7 @@
 
                 <form method="post" action={{url('/fileEvaluacion/media')}} enctype="multipart/form-data">
                 {{csrf_field()}}
-                  <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/media.pdf')}}">Media: </a>
+                  <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/media.pdf')}}">Evaluación Regular: </a>
                    {!!$evaluacion->media!!}&nbsp;
                    <input type="file" name="file" placeholder="Media"></li>
                    <br>&nbsp;

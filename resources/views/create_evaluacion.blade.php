@@ -19,6 +19,8 @@
                     <option value="Quiz">Quiz</option>
                     <option value="Laboratorio">Laboratorio</option>
                     <option value="Tarea">Tarea</option>
+                    <option value="Trabajo">Trabajo</option>
+                    <option value="Otro">Otro</option>
                 </select>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

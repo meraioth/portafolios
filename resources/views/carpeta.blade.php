@@ -30,7 +30,7 @@
 
                 <form method="post" action={{url('/file/planilla')}} enctype="multipart/form-data">
                 {{csrf_field()}}
-                  <li> <a href="{{ url('/show/planilla.pdf')}}">Planilla: </a>
+                  <li> <a href="{{ url('/show/planilla.pdf')}}">Planilla de Notas: </a>
                    {!!$carpeta[0]->planilla!!}
                    <input type="file" name="file" placeholder="Acta"></li>
                    <br>
