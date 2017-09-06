@@ -23,7 +23,7 @@
                   <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/mala.pdf')}}">Evaluación Deficiente: </a>
                   {!!$evaluacion->mala!!}
                   &nbsp;
-                  <input type="file" name="file" placeholder="Mala"></li>
+                  <input type="file" name="file" placeholder="Deficiente"></li>
                   <br>&nbsp;
                   <input type="submit" class="btn btn-primary" value="Subir">
                   <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
@@ -34,7 +34,7 @@
                 {{csrf_field()}}
                   <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/media.pdf')}}">Evaluación Regular: </a>
                    {!!$evaluacion->media!!}&nbsp;
-                   <input type="file" name="file" placeholder="Media"></li>
+                   <input type="file" name="file" placeholder="Regular"></li>
                    <br>&nbsp;
                   <input type="submit" class="btn btn-primary" value="Subir">
                   <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
