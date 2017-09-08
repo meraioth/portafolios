@@ -19,10 +19,8 @@ class EvaluacionsTableSeeder extends Seeder
             'media'=>'media.pdf',
             'mala'=>'mala.pdf',
             'pauta'=>'pauta.pdf',
-            'otro'=>'otro.pdf',
+            'enunciado'=>'enunciado.pdf',
             'fecha'=>'17deEnerodel2017'
-           
-            
         ]);
     }
 }

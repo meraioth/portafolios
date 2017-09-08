@@ -41,24 +41,14 @@ class EvaluacionController extends Controller
       $año = session()->get('ramo')->ano;
       $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
       $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones/'.$request->nombre;
-      $directorio2 = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones/'.$request->nombre.'/otro/';
-      // dd($directorio);
    
       if ($request->hasFile('file')) {
           $originalFileName = $request->file->getClientOriginalName();
           $fileSize = $request->file->getClientSize();
           $fileExtension =  $request->file->extension();
-          if($fileName == 'otro'){
-            $commpleteFile = $originalFileName;
-            $directorio = $directorio2;
-          }
-          else{
-            $commpleteFile = $fileName.'.'.$fileExtension;
-          }
+          $commpleteFile = $fileName.'.'.$fileExtension;
           $request->file->storeAs($directorio,$commpleteFile);
-
           $tmp_evaluacion = Evaluacion::where('carpeta_id', session()->get('carpeta')->id)->get();
-
           $tmp_evaluacion[0][$fileName] = $commpleteFile;
           $tmp_evaluacion[0]->save();
           return redirect('/evaluaciones/'.$request->evaluacion_id);
@@ -75,47 +65,11 @@ class EvaluacionController extends Controller
       $dir = 'app/'.$user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/evaluaciones/'.$evaluacion.'/';
 
       $path = storage_path($dir.$fileName);
-      if (strpos($fileName, '.pdf') !== false) {
-        return Response::make(file_get_contents($path), 200, [
+      return Response::make(file_get_contents($path), 200, [
           'Content-Type' => 'application/pdf',
           'Content-Disposition' => 'inline; filename="'.$fileName.'"'
         ]);
-      }
-      else{
-        $this->zipOtros($dir.'/otro/');
-        return Response::download(public_path().'/ev-otro.zip');
-      }
    }
-
-   private function zipOtros($urlCarpeta){
-        $rootPath = storage_path($urlCarpeta);
-        // Initialize archive object
-        $zip = new ZipArchive();
-        $zip->open('ev-otro.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
-
-        // Create recursive directory iterator
-        /** @var SplFileInfo[] $files */
-        $files = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($rootPath),
-            \RecursiveIteratorIterator::LEAVES_ONLY
-        );
-
-        foreach ($files as $name => $file)
-        {
-            // Skip directories (they would be added automatically)
-            if (!$file->isDir())
-            {
-                // Get real and relative path for current file
-                $filePath = $file->getRealPath();
-                $relativePath = substr($filePath, strlen($rootPath) + 1);
-                // Add current file to archive
-                $zip->addFile($filePath, $relativePath);                
-            }  
-        }
-        // Zip archive will be created only after closing object
-        $zip->close();
-        return 'ev-otro.zip';
-    }
 
    /**
      * Show the form for creating a new resource.

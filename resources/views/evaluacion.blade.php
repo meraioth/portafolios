@@ -7,6 +7,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{$evaluacion->nombre}} {{$evaluacion->fecha}}</div>
 
+                <form method="post" action={{url('/fileEvaluacion/enunciado')}} enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/enunciado.pdf')}}">Enunciado: </a>
+                   {!!$evaluacion->enunciado!!}&nbsp;
+                   <input type="file" name="file" placeholder="Enunciado"></li>
+                   <br>&nbsp;
+                  <input type="submit" class="btn btn-primary" value="Subir">
+                  <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
+                  <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
+                </form><br>  
+
                 <form name="syllabus" method="post" action={{url('/fileEvaluacion/buena')}} enctype="multipart/form-data" >
                 {{csrf_field()}}
                    <li><a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/buena.pdf')}}">Evaluación Buena: </a> 
@@ -50,18 +61,7 @@
                   <input type="submit" class="btn btn-primary" value="Subir">
                   <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
                   <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
-                </form><br>  
-
-                <form method="post" action={{url('/fileEvaluacion/otro')}} enctype="multipart/form-data">
-                {{csrf_field()}}
-                  <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/'.$evaluacion->otro)}}">Otro: </a>
-                   {!!$evaluacion->otro!!}&nbsp;
-                   <input type="file" name="file" placeholder="Otro"></li>
-                   <br>&nbsp;
-                  <input type="submit" class="btn btn-primary" value="Subir">
-                  <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
-                  <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
-                </form><br>           
+                </form><br>          
                 </div>
             </div>
         </div>
