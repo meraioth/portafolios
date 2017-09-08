@@ -39,7 +39,29 @@
                   <input type="submit" class="btn btn-primary" value="Subir">
                   <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
                   <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
-                </form><br>         
+                </form><br>
+
+                <form method="post" action={{url('/fileEvaluacion/pauta')}} enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/pauta.pdf')}}">Pauta: </a>
+                   {!!$evaluacion->pauta!!}&nbsp;
+                   <input type="file" name="file" placeholder="Pauta"></li>
+                   <br>&nbsp;
+                  <input type="submit" class="btn btn-primary" value="Subir">
+                  <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
+                  <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
+                </form><br>  
+
+                <form method="post" action={{url('/fileEvaluacion/otro')}} enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="{{ url('/showEvaluacion/'.$evaluacion->nombre.'/'.$evaluacion->otro)}}">Otro: </a>
+                   {!!$evaluacion->otro!!}&nbsp;
+                   <input type="file" name="file" placeholder="Otro"></li>
+                   <br>&nbsp;
+                  <input type="submit" class="btn btn-primary" value="Subir">
+                  <input type="hidden" name="evaluacion_id" value="{!!$evaluacion->id!!}">
+                  <input type="hidden" name="nombre" value="{!!$evaluacion->nombre!!}">
+                </form><br>           
                 </div>
             </div>
         </div>

@@ -39,6 +39,7 @@ Route::get('/ramo/delete/{id}','RamoController@destroy');
 
 Route::post('/file/{fileName}','CarpetaController@storeFile');
 Route::get('/show/{fileName}','CarpetaController@showPdf');
+Route::get('/descargar','CarpetaController@descargarMaterial');
 
 Route::post('/fileEvaluacion/{fileName}','EvaluacionController@storeFile');
 Route::get('/showEvaluacion/{nombre_evaluacion}/{fileName}','EvaluacionController@showPdf');

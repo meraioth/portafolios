@@ -36,6 +36,15 @@
                    <br>
                   <input type="submit" class="btn btn-primary" value="Subir">
                 </form><br>
+
+                <form method="post" action={{url('/file/material')}} enctype="multipart/form-data">
+                {{csrf_field()}}
+                  <li> <a href="{{ url('/descargar')}}">Material: </a>
+                   {!!$carpeta[0]->zip!!}
+                   <input type="file" name="file" placeholder="Material"></li>
+                   <br>
+                  <input type="submit" class="btn btn-primary" value="Subir">
+                </form><br>
                 </div>
             </div>
         </div>

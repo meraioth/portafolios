@@ -25,7 +25,7 @@ class CarpetasTableSeeder extends Seeder
             'planilla' => 'no disponible',
             'syllabus' => 'no disponible',
             'acta' =>'no disponible',
-            'zip' =>'no disponible',
+            'material' =>'no disponible',
             'ramo_id'=>1
         ]);
     }

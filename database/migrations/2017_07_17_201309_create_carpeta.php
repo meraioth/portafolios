@@ -19,7 +19,7 @@ class CreateCarpeta extends Migration
             $table->string('planilla')->nullable();;
             $table->string('syllabus')->nullable();;
             $table->string('acta')->nullable();;
-            $table->string('zip')->nullable();;
+            $table->string('material')->nullable();;
             $table->integer('ramo_id')->unsigned();
             $table->foreign('ramo_id')
                     ->references('id')

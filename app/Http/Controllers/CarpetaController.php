@@ -9,7 +9,7 @@ use App\Carpeta;
 use App\Asignatura;
 use App\Evaluacion;
 use App\User;
-
+use ZipArchive;
 use Illuminate\Support\Facades\Auth;
 use Response;
 
@@ -43,13 +43,20 @@ class CarpetaController extends Controller{
       $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
       $año = session()->get('ramo')->ano;
       $directorio = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/';
+      $directorio2 = $user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/material/';
 
    
       if ($request->hasFile('file')) {
           $originalFileName = $request->file->getClientOriginalName();
           $fileSize = $request->file->getClientSize();
           $fileExtension =  $request->file->extension();
-          $commpleteFile = $fileName.'.'.$fileExtension;
+          if($fileName == 'material'){
+            $commpleteFile = $originalFileName;
+            $directorio = $directorio2;
+          }
+          else{
+            $commpleteFile = $fileName.'.'.$fileExtension;
+          }
 
           $request->file->storeAs($directorio,$commpleteFile);
 
@@ -79,6 +86,45 @@ class CarpetaController extends Controller{
           'Content-Disposition' => 'inline; filename="'.$fileName.'"'
       ]);
    }
+   public function descargarMaterial(){
+      $user = Auth::user()->name;
+      $semestre = "Semestre ".session()->get('ramo')->semestre;
+      $nombre_ramo = Asignatura::find(session()->get('ramo'))[0]->nombre;
+      $año = session()->get('ramo')->ano;
+      $directorio = 'app/'.$user.'/'.$nombre_ramo.'/'.$año.'/'.$semestre.'/';
+      $this->zipMaterial($directorio.'/material/');
+      return Response::download(public_path().'/material.zip');
+   }
+
+   private function zipMaterial($urlCarpeta){
+        $rootPath = storage_path($urlCarpeta);
+        // Initialize archive object
+        $zip = new ZipArchive();
+        $zip->open('material.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+        // Create recursive directory iterator
+        /** @var SplFileInfo[] $files */
+        $files = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($rootPath),
+            \RecursiveIteratorIterator::LEAVES_ONLY
+        );
+
+        foreach ($files as $name => $file)
+        {
+            // Skip directories (they would be added automatically)
+            if (!$file->isDir())
+            {
+                // Get real and relative path for current file
+                $filePath = $file->getRealPath();
+                $relativePath = substr($filePath, strlen($rootPath) + 1);
+                // Add current file to archive
+                $zip->addFile($filePath, $relativePath);                
+            }  
+        }
+        // Zip archive will be created only after closing object
+        $zip->close();
+        return 'material.zip';
+    }
 
    private function getEvaluaciones($ramo){
         $salida = [];
