@@ -132,6 +132,7 @@ class CarpetaController extends Controller{
         $carpeta = $ramo_temp->carpeta;
         return $carpeta->evaluacion;
     }
+    
     private function getAsignatura($ramo){
         $salida = [];
         echo $ramo;

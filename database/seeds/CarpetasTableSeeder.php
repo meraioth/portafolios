@@ -28,5 +28,23 @@ class CarpetasTableSeeder extends Seeder
             'material' =>'no disponible',
             'ramo_id'=>1
         ]);
+
+        DB::table('carpetas')->insert([
+            'fecha_subida' => '2017-07-01',
+            'planilla' => 'no disponible',
+            'syllabus' => 'no disponible',
+            'acta' =>'no disponible',
+            'material' =>'no disponible',
+            'ramo_id'=>2
+        ]);
+
+        DB::table('carpetas')->insert([
+            'fecha_subida' => '2017-07-01',
+            'planilla' => 'no disponible',
+            'syllabus' => 'no disponible',
+            'acta' =>'no disponible',
+            'material' =>'no disponible',
+            'ramo_id'=>4
+        ]);
     }
 }
