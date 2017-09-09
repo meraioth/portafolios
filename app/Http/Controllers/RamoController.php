@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Asignatura;
 use App\Ramo;
 use App\Carpeta;
+use App\User;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -17,72 +18,56 @@ class RamoController extends Controller
         //
     }
 
-    public function create()
+    public function create($user_id)
     {
-        return view('create_ramo',['asignaturas'=>Asignatura::all()]);
+        $asignado = User::find($user_id);
+
+        return view('ramos.asignar',[
+            'asignaturas'=>Asignatura::all(),
+            'asignado' => $asignado
+            ]
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        // dd($request);
         $ramo = new Ramo;
-        $ramo->codigo_asignatura = $request->asignatura_codigo;
+        $ramo->codigo_asignatura = $request->codigo_asignatura;
         $ramo->ano = $request->ano;
         $ramo->semestre = $request->semestre;
         $ramo->save();
-        DB::table('ramo_user')->insert(['user_id'=>Auth::user()->id,'ramo_id'=>$ramo->id]);
+
+        
+        DB::table('ramo_user')->insert([
+            'user_id'=>$request->user_id,
+            'ramo_id'=>$ramo->id
+            ]
+        );
+        
         $carpeta = new Carpeta;
         $carpeta->ramo_id=$ramo->id;
         $carpeta->save();
-        return redirect('home');
+        
+        return redirect('/ramo_jc/'.$request->user_id);
            
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $ramo=Ramo::find($id);

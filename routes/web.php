@@ -32,12 +32,12 @@ Route::resource('asignaturas', 'AsignaturaController');
 
 
 //RAMO CONTROLLER
-Route::get('/ramo/create','RamoController@create');
+Route::get('/ramo/create/{user_id}','RamoController@create');
 Route::post('/ramo/store','RamoController@store');
 Route::get('/ramo/delete/{id}','RamoController@destroy');
 
 //RAMO JEFE CARRERA CONTROLLER
-Route::get('/ramo_jc/{id}','RamoJCController@index');
+Route::get('/ramo_jc/{id_usuario}','RamoJCController@index');
 Route::get('/ramo_jc/{id_usuario}/{id_ramo}','RamoJCController@create');
 
 //CARPETA CONTROLLER
