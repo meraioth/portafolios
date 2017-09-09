@@ -17,11 +17,5 @@ class AsignaturasTableSeeder extends Seeder
             'programa' => 'Inteligencia-Artificial.pdf',
             'semestre' => 1
         ]);
-            DB::table('asignaturas')->insert([
-            'codigo' => 555555,
-            'nombre' => 'Dummy Ramo',
-            'programa' => 'Dummy-Ramo.pdf',
-            'semestre' => 1
-        ]);
     }
 }

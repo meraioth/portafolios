@@ -46,7 +46,11 @@ class RamoController extends Controller
         );
         
         $carpeta = new Carpeta;
-        $carpeta->ramo_id=$ramo->id;
+        $carpeta->ramo_id =$ramo->id;
+        $carpeta->planilla = "no disponible";
+        $carpeta->syllabus = "no disponible";
+        $carpeta->acta = "no disponible";
+        $carpeta->material = "no disponible";
         $carpeta->save();
         
         return redirect('/ramo_jc/'.$request->user_id);
