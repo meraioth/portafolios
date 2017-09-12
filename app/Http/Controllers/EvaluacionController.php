@@ -89,16 +89,19 @@ class EvaluacionController extends Controller
      */
     public function store(Request $request){
         $eval = new Evaluacion;
+
         $eval->nombre= $request->nombre;
         $eval->fecha= $request->fecha;
         $eval->tipo=$request->tipo;
         $eval->carpeta_id=$request->carpeta_id;
         $eval->buena="";
+        $eval->enunciado="";
         $eval->otro="";
         $eval->pauta="";
         $eval->mala="";
         $eval->media="";
         $eval->save();
+
         foreach (Auth::user()->ramos as $ramo ) {
             if($ramo->carpeta->id == $request->carpeta_id)
                 return redirect('/carpeta/'.$ramo->id);

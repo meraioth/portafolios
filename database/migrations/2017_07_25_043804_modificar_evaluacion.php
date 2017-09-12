@@ -20,6 +20,7 @@ class ModificarEvaluacion extends Migration
             $table->string('buena');
             $table->string('media');
             $table->string('mala');
+            $table->string('otro');
             $table->string('enunciado');
             $table->string('pauta');
             $table->string('fecha');
