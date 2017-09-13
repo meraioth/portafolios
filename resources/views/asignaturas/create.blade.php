@@ -20,6 +20,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="semestre" class="col-md-4 control-label">Semestre</label>
+
+                            <div class="col-md-6">
+                                <select name="semestre">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="2">3</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('rut') ? ' has-error' : '' }}">
                             <label for="codigo" class="col-md-4 control-label">Codigo</label>
 

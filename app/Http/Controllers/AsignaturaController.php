@@ -25,7 +25,7 @@ class AsignaturaController extends Controller
         $asignatura = new Asignatura;
 
         $asignatura->nombre = request('name');
-        // $asignatura->semestre = null
+        $asignatura->semestre = request('semestre');
         // $asignatura->programa = null
         $asignatura->codigo = request('codigo');
 

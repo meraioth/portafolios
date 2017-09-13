@@ -57,9 +57,8 @@
                     <div class="panel-body">
                         <ul>
                             @foreach($asignaturas as $asignatura)
-                                <li><a method="GET" href="{{ url('/ramo_jc/'.$usuario->id) }}">
+                                <li>
                                 {!!$asignatura->codigo!!} - {{$asignatura->nombre}}
-                                </a>
                                 </li>
                             @endforeach
                         </ul>

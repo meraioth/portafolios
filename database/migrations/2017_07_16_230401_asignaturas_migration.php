@@ -16,7 +16,7 @@ class AsignaturasMigration extends Migration
         Schema::create('asignaturas', function (Blueprint $table) {
             $table->integer('codigo');
             $table->string('nombre');
-            $table->string('programa');
+            $table->string('programa')->nullable();
             $table->integer('semestre');
             //semestre 1=solo primer semetre , 2=solo segundo semestre , 3 = ambos semestres
             $table->primary('codigo');
