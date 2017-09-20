@@ -110,8 +110,11 @@ php artisan migrate
 
 php artisan seed
 
+# Group Writable (Group, User Writable)
+$ sudo chmod -R gu+w storage
 
-chmod –R 775 directorio_proyecto.
+# World-writable (Group, User, Other Writable)
+$ sudo chmod -R guo+w storage
 </p>
 
 <p>[1] https://laravel.com/docs/5.4#installation
