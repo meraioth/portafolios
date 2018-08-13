@@ -10,6 +10,7 @@ use View;
 class AsignaturaController extends Controller
 {
     
+    
     public function index(){
         $asignaturas = Asignatura::all();
         return view('asignaturas.index',compact('asignaturas'));
