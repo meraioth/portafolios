@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class AsignaturasMigration extends Migration
 {
+    
     /**
      * Run the migrations.
      *
